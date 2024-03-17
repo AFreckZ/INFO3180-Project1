@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+<head>
+      <link rel="stylesheet" href="/static/css/app.css">
+</head>
+{% block main %}
+<h1>Add New Property</h1>
+
+{% include 'flash_messages.html' %}
+
+<div class="create">
+    <form  action="{{ url_for('create') }}" method="POST" enctype="multipart/form-data">
+      
+      {{ form.csrf_token }}
+      <div class="fields">
+         
+          <h6>{{ form.title.label }}</h6>
+          {{ form.title(class="form-control",placeholder="",required='required') }}
+      </div>
+      
+      <div class="fields">
+          <h6>{{ form.descr.label }}</h6>
+          {{ form.descr(class="form-control",placeholder="",rows=10, cols=40,required='required') }}
+      </div>
+      
+      <div class="grid1">
+          <h6>{{ form.bednum.label }}</h6>
+          {{ form.bednum(class="form-control",placeholder="1..",required='required') }}
+          
+          <h6>{{ form.bathnum.label }}</h6>
+          {{ form.bathnum(class="form-control",placeholder="2..",required='required') }}
+      </div>
+      
+      <div class="grid2">
+          <h6>{{ form.price.label }}</h6>
+          {{ form.price(class="form-control",placeholder="1,000,000",required='required') }}
+          
+           <h6>{{ form.proptype.label }}</h6>
+          {{ form.proptype}}
+      </div>
+      
+      <div class="fields">
+          <h6>{{ form.location.label }}</h6>
+          {{ form.location(class="form-control",placeholder="10 Waterloo Rd",required='required') }}
+          
+           <h6>{{ form.photo.label }}</h6>
+          {{ form.photo(class="form-control") }}
+      </div>
+       <button type="submit" name="submit" class="btn btn-primary">Add Property</button>
+       
+    </form>
+     
+{% endblock %}
